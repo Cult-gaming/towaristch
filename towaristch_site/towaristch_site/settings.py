@@ -178,17 +178,17 @@ CMS_PLACEHOLDER_CONF = {}
 DATABASES = {
     'default': {
         'CONN_MAX_AGE': 0,
-        'ENGINE': 'django.db.backends.sqlite3',
-        'HOST': 'localhost',
-        'NAME': 'project.db',
-        'PASSWORD': '',
-        'PORT': '',
-        'USER': ''
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'towaristch_site',
+        'USER' : 'towaristch',
+        'PASSWORD' : 'soviet16',
+        'HOST' : '127.0.0.1',
+        'PORT' : '5432'
     }
 }
 
 MIGRATION_MODULES = {
-    
+
 }
 
 THUMBNAIL_PROCESSORS = (
