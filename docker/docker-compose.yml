@@ -1,44 +1,40 @@
-version:            '2.2'
+version:                   '2.2'
 services:
 
 # pgSQL server
   pgsql:
-    restart:        always
-    image:          postgres
-    container_name: pgsql
-    hostname:       pgsql
+    restart:               always
+    image:                 postgres
+    container_name:        pgsql
+    hostname:              pgsql
     ports:
       - "5432:5432"
     environment:
-      - DEBUG=false
-      - DB_USER=towaristch
-      - DB_PASS=soviet16
-      - DB_NAME=towaristch_site
-#      - DB_TEMPLATE=
-#      - DB_EXTENSION=
-#      - REPLICATION_MODE=
-#      - REPLICATION_USER=
-#      - REPLICATION_PASS=
-#      - REPLICATION_SSLMODE=
+        POSTGRES_PASSWORD: 'soviet16'
+        POSTGRES_USER:     'towaristch'
+        POSTGRES_DB:       'towaristch_site'
     volumes:
       - pgdata:/var/lib/postgresql
     networks:
       - towaristch
 
-# adminer for pgSQL
-  adminer:
-    container_name: pg-adminer
-    hostname:       pg-adminer
-    image:          adminer
-    restart:        always
+# pgadmin for pgSQL
+  pgadmin:
+    container_name:        pgadmin
+    hostname:              pgadmin
+    image:                 dpage/pgadmin4
+    restart:               always
     ports:
-      - 8080:8080
+      - 8080:80
+    environment:
+        PGADMIN_DEFAULT_EMAIL: 'mif36rus@gmail.com'
+        PGADMIN_DEFAULT_PASSWORD: 'soviet16'
     networks:
       - towaristch
 
 volumes:
   pgdata:
-    driver:         local
+    driver:                local
 
 # towaristch local network for apps
 networks:
